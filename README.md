@@ -1,1 +1,1 @@
-# msys
+# msys class
