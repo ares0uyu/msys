@@ -1,8 +1,10 @@
-/* calculator with AST */
+/* Example 3-2. Bison parser for AST calculator
+ * calculator with AST 
+ */
 
 %{
     #include <stdio.h>
-    #incldue <stdlib.h>
+    #include <stdlib.h>
     #include "fb3-1.h"
 %}
 
@@ -20,11 +22,11 @@
 %%
 calclist:/*nothing */
 | calclist exp EOL{
-    printf("= %4.4g\n", eval($2))
+    printf("= %4.4g\n", eval($2));
     treefree($2);
     printf("> ");
 }
-| claclist EOL { printf("> ");} /* blank line or a comment */
+| calclist EOL { printf("> ");} /* blank line or a comment */
 ;
 
 exp : factor
@@ -32,8 +34,8 @@ exp : factor
     |exp '-' factor { $$ = newast('-', $1, $3); }
     ;
 factor : term
-    |exp '*' factor { $$ = newast('*', $1, $3); }
-    |exp '/' factor { $$ = newast('/', $1, $3); }
+    |factor '*' term { $$ = newast('*', $1, $3); }
+    |factor '/' term { $$ = newast('/', $1, $3); }
     ;
 term: NUMBER { $$ = newnum($1); }
     | '|' term { $$ = newast('|', $2, NULL); }

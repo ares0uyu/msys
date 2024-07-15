@@ -1,4 +1,6 @@
-/* recognize tokens for the calculator */
+/* Example 3-3. Lexer for AST calculator
+ * recognize tokens for the calculator 
+ */
 
 %option noyywrap nodefault yylineno
 %{
