@@ -1,6 +1,6 @@
 %{
 #incldue "fb1-5.tab.h"
-}%
+%}
 
 %%
 "+" { return ADD; }
