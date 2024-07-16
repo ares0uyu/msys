@@ -1,14 +1,13 @@
-
-/* Example 3-4. C routines for AST calculator
+/*
  * helper functions for fb3-1
  */
 #  include <stdio.h>
 #  include <stdlib.h>
 #  include <stdarg.h>
 #  include "fb3-1.h"
+#  include "fb3-1.tab.h"
 
-struct ast *
-newast(int nodetype, struct ast *l, struct ast *r)
+struct ast *newast(int nodetype, struct ast *l, struct ast *r)
 {
   struct ast *a = malloc(sizeof(struct ast));
   
@@ -22,8 +21,7 @@ newast(int nodetype, struct ast *l, struct ast *r)
   return a;
 }
 
-struct ast *
-newnum(double d)
+struct ast *newnum(double d)
 {
   struct numval *a = malloc(sizeof(struct numval));
   
@@ -36,8 +34,7 @@ newnum(double d)
   return (struct ast *)a;
 }
 
-double
-eval(struct ast *a)
+double eval(struct ast *a)
 {
   double v;
 
@@ -55,8 +52,7 @@ eval(struct ast *a)
   return v;
 }
 
-void
-treefree(struct ast *a)
+void treefree(struct ast *a)
 {
   switch(a->nodetype) {
 
@@ -81,8 +77,7 @@ treefree(struct ast *a)
   }
 }
 
-void
-yyerror(char *s, ...)
+void yyerror(char *s, ...)
 {
   va_list ap;
   va_start(ap, s);
@@ -92,8 +87,7 @@ yyerror(char *s, ...)
   fprintf(stderr, "\n");
 }
 
-int
-main()
+int main()
 {
   printf("> "); 
   return yyparse();

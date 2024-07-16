@@ -66,8 +66,8 @@ union YYSTYPE
 {
 #line 11 "fb3-1.y"
 
-    struct ast *a;
-    double d; /* cpu acumulator regiser 2배 ALU 2번 돈다 */
+  struct ast *a;
+  double d;
 
 #line 73 "fb3-1.tab.h"
 

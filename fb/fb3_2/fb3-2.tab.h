@@ -35,8 +35,8 @@
    especially those whose name start with YY_ or yy_.  They are
    private implementation details that can be changed or removed.  */
 
-#ifndef YY_YY_FB1_5_TAB_H_INCLUDED
-# define YY_YY_FB1_5_TAB_H_INCLUDED
+#ifndef YY_YY_FB3_2_TAB_H_INCLUDED
+# define YY_YY_FB3_2_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -55,19 +55,37 @@ extern int yydebug;
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
     NUMBER = 258,                  /* NUMBER  */
-    ADD = 259,                     /* ADD  */
-    SUB = 260,                     /* SUB  */
-    MUL = 261,                     /* MUL  */
-    DIV = 262,                     /* DIV  */
-    ABS = 263,                     /* ABS  */
-    EOL = 264                      /* EOL  */
+    NAME = 259,                    /* NAME  */
+    FUNC = 260,                    /* FUNC  */
+    EOL = 261,                     /* EOL  */
+    IF = 262,                      /* IF  */
+    THEN = 263,                    /* THEN  */
+    ELSE = 264,                    /* ELSE  */
+    WHILE = 265,                   /* WHILE  */
+    DO = 266,                      /* DO  */
+    LET = 267,                     /* LET  */
+    CMP = 268,                     /* CMP  */
+    UMINUS = 269                   /* UMINUS  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+union YYSTYPE
+{
+#line 9 "fb3-2.y"
+
+  struct ast *a;
+  double d;
+  struct symbol *s;		/* which symbol */
+  struct symlist *sl;
+  int fn;			/* which function */
+
+#line 86 "fb3-2.tab.h"
+
+};
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -79,4 +97,4 @@ extern YYSTYPE yylval;
 int yyparse (void);
 
 
-#endif /* !YY_YY_FB1_5_TAB_H_INCLUDED  */
+#endif /* !YY_YY_FB3_2_TAB_H_INCLUDED  */
